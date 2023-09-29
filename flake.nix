@@ -9,6 +9,8 @@
 
   inputs.nur.url = "github:nix-community/NUR";
 
+  inputs.nixos-wsl.url = "github:nix-community/NixOS-WSL";
+
   inputs.nix-index-database.url = "github:Mic92/nix-index-database";
   inputs.nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -75,7 +77,10 @@
       nixosConfigurations.nixos = mkNixosConfiguration {
         hostname = "nixos";
         username = "example-user"; # FIXME: replace with your own username!
-        modules = [./wsl.nix];
+        modules = [
+          nixos-wsl.nixosModules.wsl
+          ./wsl.nix
+        ];
       };
     };
 }

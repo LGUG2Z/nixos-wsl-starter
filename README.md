@@ -1,27 +1,131 @@
-# Getting Started
+# nixos-wsl-starter
 
-* Get the [latest NixOS-WSL installer](https://github.com/nix-community/NixOS-WSL/actions/runs/6159516082)
-* Install it (tweak the command to your desired paths): `wsl --import NixOS .\NixOS\ .\nixos-wsl-installer.tar.gz --version 2`
-* Enter the distro with `wsl -d NixOs`
-* Get a copy of this repo
+This repository is intended to be a sane, batteries-included starter template
+for running a LunarVim-powered NixOS development environment on WSL.
+
+If you don't want to dig into NixOS too much right now, the only file you need
+to concern yourself with is [home.nix](home.nix). This is where you can add and
+remove binaries to your global `$PATH`.
+
+Go to [https://search.nixos.org](https://search.nixos.org/packages) to find the
+correct package names, though usually they will be what you expect them to be
+in other package managers.
+
+`unstable-packages` is for packages that you want to always keep at the latest
+released versions, and `stable-packages` is for packages that you want to track
+with the current release of NixOS (currently 22.03).
+
+Make sure to look at all the `FIXME` notices in the various files which are
+intended to direct you to places where you may want to make configuration
+tweaks.
+
+If you found this starter template useful, please consider
+[sponsoring](https://github.com/sponsors/LGUG2Z) and [subscribing to my YouTube
+channel](https://www.youtube.com/channel/UCeai3-do-9O4MNy9_xjO6mg?sub_confirmation=1).
+
+## What Is Included
+
+This starter is a lightly-opinionated take on a productive terminal-driven
+development environment based on my own preferences. However, it is trivial to
+customize to your liking both by removing and adding tools that you prefer.
+
+* The default editor is initially `nvim`, which is switched by the end of the
+  quickstart to `lvim` ([LunarVim](https://lunarvim.org))
+* `win32yank` is used to ensure perfect bi-directional copying and pasting to
+  and from Windows GUI applications and LunarVim running in WSL
+* The default shell is `zsh`
+* The prompt is [Starship](https://starship.rs/)
+* [`fzf`](https://github.com/junegunn/fzf),
+  [`lsd`](https://github.com/lsd-rs/lsd),
+  [`zoxide`](https://github.com/ajeetdsouza/zoxide), and
+  [`broot`](https://github.com/Canop/broot) are integrated into `zsh` by
+  default
+    * These can all be disabled easily by setting `enable = false` in
+      [home.nix](home.nix) or just removing the lines all together
+* [`direnv`](https://github.com/direnv/direnv) is integrated into `zsh` by
+  default
+* `git` config is generated in [home.nix](home.nix) with options provided to
+  enable private HTTPS clones with secret tokens
+* `zsh` config is generated in [home.nix](home.nix) and includes git aliases,
+  useful WSL aliases, and
+  [sensible`$WORDCHARS`](https://lgug2z.com/articles/sensible-wordchars-for-most-developers/)
+
+## Quickstart
+
+* Get the [latest NixOS-WSL
+  installer](https://github.com/nix-community/NixOS-WSL/actions/runs/6159516082)
+* Install it (tweak the command to your desired paths):
+```powershell
+wsl --import NixOS .\NixOS\ .\nixos-wsl-installer.tar.gz --version 2
+
+```
+
+* Enter the distro:
+```powershell
+wsl -d NixOs
+```
+
+* Get a copy of this repo:
 ```bash
 cd ~
 nix-shell -p busybox
 curl -L https://github.com/LGUG2Z/nixos-wsl-starter/archive/refs/heads/master.zip | unzip -
 mv nixos-wsl-starter-master configuration
 ```
+
 * Change the username to your desired username in `flake.nix`
-* Apply the configuration with `sudo nixos-rebuild switch --impure --flake ~/configuration`
-* Disconnect from your current WSL shell and then reconnect again with `wsl -d NixOS`
-* `cd` and then `pwd` should now show `/home/<YOUR_USERNAME>`
-* Do this bit again because the temporary initial home directory was blown away when we applied our configuration
+* Apply the configuration
+```bash
+sudo nixos-rebuild switch --flake  ~/configuration
+```
+
+* Disconnect from your current WSL shell and then reconnect again with `wsl -d
+  NixOS`
+* `cd ~` and then `pwd` should now show `/home/<YOUR_USERNAME>`
+* Do this bit again because the temporary initial home directory was blown away
+  when we applied our configuration
 ```bash
 cd ~
 nix-shell -p busybox
 curl -L https://github.com/LGUG2Z/nixos-wsl-starter/archive/refs/heads/master.zip | unzip -
 mv nixos-wsl-starter-master configuration
 ```
-* Install LunarVim: `LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)` (select "no" for all dependency prompts)
+* Install LunarVim (select "no" for all dependency prompts)
+```bash
+LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
+```
 * Change the username to your desired username in `flake.nix` one last time
-* Go through all the `FIXME:` notices in `~/configuration` and make changes wherever you want
-* Apply any further changes with `sudo nixos-rebuild switch --impure --flake ~/configuration`
+* Go through all the `FIXME:` notices in `~/configuration` and make changes
+  wherever you want
+* Apply the configuration
+```bash
+sudo nixos-rebuild switch --flake  ~/configuration
+```
+
+Note: If you will be developing in Rust, you'll still be managing your toolchains and components like `rust-analyzer` with `rustup`!
+
+## Project Layout
+
+In order to keep the template as approachable as possible for new NixOS users,
+this project uses a flat layout without any nesting or modularization.
+
+* `flake.nix` is where dependencies are specified
+    * `nixpkgs` is the current release of NixOS
+    * `nixpkgs-unstable` is the current trunk branch of NixOS (ie. all the
+      latest packages)
+    * `home-manager` is used to manage everything related to your home
+      directory (dotfiles etc.)
+    * `nur` is the community-maintained [Nix User
+      Repositories](https://nur.nix-community.org/) for packages that may not
+      be available in the NixOS repository
+    * `nixos-wsl` exposes important WSL-specific configuration options
+    * `nix-index-database` tells you how to install a package when you run a
+      command which requires a binary not in the `$PATH`
+* `wsl.nix` is where the VM is configured
+    * The hostname is set here
+    * The default shell is set here
+    * User groups are set here
+    * WSL configuration options are set here
+    * NixOS options are set here
+* `home.nix` is where packages, dotfiles, terminal tools, environment variables
+  and aliases are configured

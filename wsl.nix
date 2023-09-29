@@ -6,10 +6,6 @@
   pkgs,
   ...
 }: {
-  imports = with import /etc/nixos/nixos-wsl; [
-    nixosModules.wsl
-  ];
-
   networking.hostName = "${hostname}";
 
   # FIXME: change your shell here if you don't want zsh
@@ -42,7 +38,7 @@
   };
 
   environment.systemPackages = [
-    (import ./win32yank.nix)
+    (import ./win32yank.nix {inherit pkgs;})
   ];
 
   home-manager.users.${username} = {
