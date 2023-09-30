@@ -1,5 +1,5 @@
 {
-  # FIXME: uncomment this if you want to reference your GitHub/GitLab access tokens and other secrets
+  # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
   # secrets,
   config,
   pkgs,
@@ -104,9 +104,18 @@ in {
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/zsh";
   };
 
-  home.packages = stable-packages ++ unstable-packages;
+  home.packages =
+    stable-packages
+    ++ unstable-packages
+    ++
+    # FIXME: you can add anything else that doesn't fit into the above two lists in here
+    [
+      # pkgs.some-package
+      # pkgs.unstable.some-other-package
+    ];
 
-  home.file.".config/lvim/config.lua".source = ./lvim_config.lua;
+  # FIXME: if you want to version your LunarVim config, add it to the root of this repo and uncomment the next line
+  # home.file.".config/lvim/config.lua".source = ./lvim_config.lua;
 
   programs = {
     home-manager.enable = true;
@@ -156,7 +165,7 @@ in {
       userEmail = ""; # FIXME: set your git email
       userName = ""; #FIXME: set your git username
       extraConfig = {
-        # FIXME: uncomment this if you want to be able to clone private https repos
+        # FIXME: uncomment the next lines if you want to be able to clone private https repos
         # url = {
         #   "https://oauth2:${secrets.github_token}@github.com" = {
         #     insteadOf = "https://github.com";

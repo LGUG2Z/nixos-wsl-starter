@@ -38,6 +38,7 @@ customize to your liking both by removing and adding tools that you prefer.
 * `win32yank` is used to ensure perfect bi-directional copying and pasting to
   and from Windows GUI applications and LunarVim running in WSL
 * The default shell is `zsh`
+* Native `docker` (ie. Linux, not Windows) is enabled by default
 * The prompt is [Starship](https://starship.rs/)
 * [`fzf`](https://github.com/junegunn/fzf),
   [`lsd`](https://github.com/lsd-rs/lsd),
@@ -45,7 +46,7 @@ customize to your liking both by removing and adding tools that you prefer.
   [`broot`](https://github.com/Canop/broot) are integrated into `zsh` by
   default
     * These can all be disabled easily by setting `enable = false` in
-      [home.nix](home.nix) or just removing the lines all together
+      [home.nix](home.nix), or just removing the lines all together
 * [`direnv`](https://github.com/direnv/direnv) is integrated into `zsh` by
   default
 * `git` config is generated in [home.nix](home.nix) with options provided to
@@ -60,7 +61,7 @@ customize to your liking both by removing and adding tools that you prefer.
   installer](https://github.com/nix-community/NixOS-WSL)
 * Install it (tweak the command to your desired paths):
 ```powershell
-wsl --import NixOS .\NixOS\ .\nixos-wsl-installer.tar.gz --version 2
+wsl --import NixOS .\NixOS\ .\nixos-wsl.tar.gz --version 2
 
 ```
 
@@ -69,44 +70,51 @@ wsl --import NixOS .\NixOS\ .\nixos-wsl-installer.tar.gz --version 2
 wsl -d NixOs
 ```
 
-* Get a copy of this repo:
+* Set up a channel:
 ```bash
-cd ~
-nix-shell -p busybox
-curl -L https://github.com/LGUG2Z/nixos-wsl-starter/archive/refs/heads/master.zip | unzip -
-mv nixos-wsl-starter-master configuration
+sudo nix-channel --add https://nixos.org/channels/nixos-23.05 nixos
+sudo nix-channel --update
 ```
 
-* Change the username to your desired username in `flake.nix`
+* Get a copy of this repo (you'll probably want to fork it eventually):
+```bash
+nix-shell -p git neovim
+git clone https://github.com/LGUG2Z/nixos-wsl-starter.git /tmp/configuration
+cd /tmp/configuration
+```
+
+* Change the username to your desired username in `flake.nix` with `nvim` (or whichever editor you prefer)
 * Apply the configuration
 ```bash
-sudo nixos-rebuild switch --flake  ~/configuration
+sudo nixos-rebuild switch --flake /tmp/configuration
 ```
 
-* Disconnect from your current WSL shell and then reconnect again with `wsl -d
-  NixOS`
-* `cd ~` and then `pwd` should now show `/home/<YOUR_USERNAME>`
-* Do this bit again because the temporary initial home directory was blown away
-  when we applied our configuration
+* Restart and reconnect to the current WSL shell
 ```bash
-cd ~
-nix-shell -p busybox
-curl -L https://github.com/LGUG2Z/nixos-wsl-starter/archive/refs/heads/master.zip | unzip -
-mv nixos-wsl-starter-master configuration
+wsl -t NixOS
+wsl -d NixOS
 ```
+
+* `cd ~` and then `pwd` should now show `/home/<YOUR_USERNAME>`
+* Move the configuration to your new home directory 
+```bash
+mv /tmp/configuration ~/configuration
+```
+
 * Install LunarVim (select "no" for all dependency prompts)
 ```bash
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
 ```
-* Change the username to your desired username in `flake.nix` one last time
+* Run `lvim` once and let it the long first-time setup run to completion
+* You can now set `sessionVariables.EDITOR = "lvim";` in [home.nix](home.nix)
 * Go through all the `FIXME:` notices in `~/configuration` and make changes
   wherever you want
 * Apply the configuration
 ```bash
-sudo nixos-rebuild switch --flake  ~/configuration
+sudo nixos-rebuild switch --flake ~/configuration
 ```
 
-Note: If you will be developing in Rust, you'll still be managing your toolchains and components like `rust-analyzer` with `rustup`!
+Note: If developing in Rust, you'll still be managing your toolchains and components like `rust-analyzer` with `rustup`!
 
 ## Project Layout
 

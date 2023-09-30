@@ -1,5 +1,5 @@
 {
-  # FIXME: uncomment this if you want to reference your GitHub/GitLab access tokens and other secrets
+  # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
   # secrets,
   username,
   hostname,
@@ -17,7 +17,7 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  # FIXME: uncomment this to enable SSH
+  # FIXME: uncomment the next line to enable SSH
   # services.openssh.enable = true;
 
   users.users.${username} = {
@@ -26,7 +26,7 @@
     shell = pkgs.zsh;
     extraGroups = [
       "wheel"
-      # FIXME: uncomment if you want to run docker without sudo
+      # FIXME: uncomment the next line if you want to run docker without sudo
       # "docker"
     ];
     # FIXME: add your own hashed password
