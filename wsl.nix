@@ -57,12 +57,14 @@
     defaultUser = username;
     startMenuLaunchers = true;
 
-    # Enable native Docker support
-    docker-native.enable = true;
-    docker-native.addToDockerGroup = true;
-
     # Enable integration with Docker Desktop (needs to be installed)
     docker-desktop.enable = false;
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    autoPrune.enable = true;
   };
 
   nix = {
@@ -70,8 +72,8 @@
       trusted-users = [username];
       # FIXME: use your access tokens from secrets.json here to be able to clone private repos on GitHub and GitLab
       # access-tokens = [
-      #   "github.com=${secrets.github.access_token}"
-      #   "gitlab.com=OAuth2:${secrets.gitlab.oauth_token}"
+      #   "github.com=${secrets.github_token}"
+      #   "gitlab.com=OAuth2:${secrets.gitlab_token}"
       # ];
 
       accept-flake-config = true;

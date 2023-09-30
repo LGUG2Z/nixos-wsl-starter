@@ -158,10 +158,10 @@ in {
       extraConfig = {
         # FIXME: uncomment this if you want to be able to clone private https repos
         # url = {
-        #   "https://oauth2:${secrets.github.oauth_token}@github.com" = {
+        #   "https://oauth2:${secrets.github_token}@github.com" = {
         #     insteadOf = "https://github.com";
         #   };
-        #   "https://oauth2:${secrets.gitlab.oauth_token}@gitlab.com" = {
+        #   "https://oauth2:${secrets.gitlab_token}@gitlab.com" = {
         #     insteadOf = "https://gitlab.com";
         #   };
         # };

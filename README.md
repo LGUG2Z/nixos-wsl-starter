@@ -15,6 +15,10 @@ in other package managers.
 released versions, and `stable-packages` is for packages that you want to track
 with the current release of NixOS (currently 22.03).
 
+If you want to update the versions of the available `unstable-packages`, run
+`nix flake update` to pull the latest version of the Nixpkgs repository and
+then apply the changes.
+
 Make sure to look at all the `FIXME` notices in the various files which are
 intended to direct you to places where you may want to make configuration
 tweaks.
@@ -53,7 +57,7 @@ customize to your liking both by removing and adding tools that you prefer.
 ## Quickstart
 
 * Get the [latest NixOS-WSL
-  installer](https://github.com/nix-community/NixOS-WSL/actions/runs/6159516082)
+  installer](https://github.com/nix-community/NixOS-WSL)
 * Install it (tweak the command to your desired paths):
 ```powershell
 wsl --import NixOS .\NixOS\ .\nixos-wsl-installer.tar.gz --version 2
