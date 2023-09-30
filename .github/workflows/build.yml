@@ -1,0 +1,37 @@
+name: 'build'
+
+on:
+  push:
+    branches: 
+      - master
+      - feature/*
+      - hotfix/*
+  pull_request: {}
+  workflow_call: {}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/nix-installer-action@v4
+        with:
+          github-token: ${{ github.token }}
+
+      - uses: DeterminateSystems/magic-nix-cache-action@v1
+
+      - name: Build tarball
+        run: |
+          nix_bin=$(which nix)
+          sudo $nix_bin run .#nixosConfigurations.nixos.config.system.build.tarballBuilder
+
+      - name: Upload tarball
+        uses: actions/upload-artifact@v3
+        with:
+          name: nixos-wsl-starter
+          path: nixos-wsl.tar.gz

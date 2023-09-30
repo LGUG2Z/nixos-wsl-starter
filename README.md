@@ -13,7 +13,7 @@ in other package managers.
 
 `unstable-packages` is for packages that you want to always keep at the latest
 released versions, and `stable-packages` is for packages that you want to track
-with the current release of NixOS (currently 22.03).
+with the current release of NixOS (currently 23.05).
 
 If you want to update the versions of the available `unstable-packages`, run
 `nix flake update` to pull the latest version of the Nixpkgs repository and
