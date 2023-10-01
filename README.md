@@ -57,6 +57,8 @@ customize to your liking both by removing and adding tools that you prefer.
 
 ## Quickstart
 
+[![Watch the walkthrough video](https://img.youtube.com/vi/UmRXXYxq8k4/hqdefault.jpg)](https://www.youtube.com/watch?v=UmRXXYxq8k4)
+
 * Get the [latest NixOS-WSL
   installer](https://github.com/nix-community/NixOS-WSL)
 * Install it (tweak the command to your desired paths):
