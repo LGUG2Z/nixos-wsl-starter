@@ -19,11 +19,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DeterminateSystems/nix-installer-action@v4
+      - uses: cachix/install-nix-action@6a9a9e84a173d90b3ffb42c5ddaf9ea033fad011
         with:
-          github-token: ${{ github.token }}
-
-      - uses: DeterminateSystems/magic-nix-cache-action@v1
+          extra_nix_config: 'access-tokens = github.com=${{ github.token }}'
 
       - name: Build tarball
         run: |
