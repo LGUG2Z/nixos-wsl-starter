@@ -69,7 +69,7 @@ wsl --import NixOS .\NixOS\ .\nixos-wsl.tar.gz --version 2
 
 * Enter the distro:
 ```powershell
-wsl -d NixOs
+wsl -d NixOS
 ```
 
 * Set up a channel:

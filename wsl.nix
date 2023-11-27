@@ -8,6 +8,10 @@
 }: {
   networking.hostName = "${hostname}";
 
+  systemd.tmpfiles.rules = [
+    "d /home/${username}/.config/lvim 0755 ${username} users"
+  ];
+
   # FIXME: change your shell here if you don't want zsh
   programs.zsh.enable = true;
   environment.pathsToLink = ["/share/zsh"];

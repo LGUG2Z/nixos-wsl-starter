@@ -24,7 +24,6 @@
           allowUnfree = true;
           permittedInsecurePackages = [
             # FIXME:: add any insecure packages you absolutely need here
-            "python-2.7.18.6" # needed for core-utils
           ];
         };
         overlays = [

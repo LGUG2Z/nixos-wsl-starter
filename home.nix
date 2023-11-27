@@ -22,6 +22,7 @@
     htop
     jq
     killall
+    lunarvim
     mosh
     neovim
     procs
@@ -39,8 +40,6 @@
     # FIXME: customize these stable packages to your liking for the languages that you use
 
     # key tools
-    gnumake # for lunarvim
-    gcc # for lunarvim
     gh # for bootstrapping
     just
 
@@ -49,7 +48,7 @@
     go
     lua
     nodejs
-    python
+    python3
     typescript
 
     # rust stuff
@@ -98,8 +97,7 @@ in {
     username = "${username}";
     homeDirectory = "/home/${username}";
 
-    # FIXME: set your preferred $EDITOR
-    sessionVariables.EDITOR = "${pkgs.neovim}/bin/nvim";
+    sessionVariables.EDITOR = "lvim";
     # FIXME: set your preferred $SHELL
     sessionVariables.SHELL = "/etc/profiles/per-user/${username}/bin/zsh";
   };
