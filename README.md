@@ -13,7 +13,7 @@ in other package managers.
 
 `unstable-packages` is for packages that you want to always keep at the latest
 released versions, and `stable-packages` is for packages that you want to track
-with the current release of NixOS (currently 23.05).
+with the current release of NixOS (currently 23.11).
 
 If you want to update the versions of the available `unstable-packages`, run
 `nix flake update` to pull the latest version of the Nixpkgs repository and
@@ -33,8 +33,7 @@ This starter is a lightly-opinionated take on a productive terminal-driven
 development environment based on my own preferences. However, it is trivial to
 customize to your liking both by removing and adding tools that you prefer.
 
-* The default editor is initially `nvim`, which is switched by the end of the
-  quickstart to `lvim` ([LunarVim](https://lunarvim.org))
+* The default editor is `lvim`
 * `win32yank` is used to ensure perfect bi-directional copying and pasting to
   and from Windows GUI applications and LunarVim running in WSL
 * The default shell is `zsh`
@@ -74,7 +73,7 @@ wsl -d NixOS
 
 * Set up a channel:
 ```bash
-sudo nix-channel --add https://nixos.org/channels/nixos-23.05 nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
 sudo nix-channel --update
 ```
 
@@ -103,12 +102,6 @@ wsl -d NixOS
 mv /tmp/configuration ~/configuration
 ```
 
-* Install LunarVim (select "no" for all dependency prompts)
-```bash
-LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh)
-```
-* Run `lvim` once and let it the long first-time setup run to completion
-* You can now set `sessionVariables.EDITOR = "lvim";` in [home.nix](home.nix)
 * Go through all the `FIXME:` notices in `~/configuration` and make changes
   wherever you want
 * Apply the configuration
