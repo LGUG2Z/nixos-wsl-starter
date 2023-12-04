@@ -12,6 +12,7 @@
   networking.hostName = "${hostname}";
 
   systemd.tmpfiles.rules = [
+    "d /home/${username}/.config 0755 ${username} users"
     "d /home/${username}/.config/lvim 0755 ${username} users"
   ];
 
