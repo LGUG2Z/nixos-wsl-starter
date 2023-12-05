@@ -4,6 +4,7 @@
   username,
   hostname,
   pkgs,
+  inputs,
   ...
 }: {
   # FIXME: change to your tz! look it up with "timedatectl list-timezones"
@@ -103,6 +104,18 @@
       accept-flake-config = true;
       auto-optimise-store = true;
     };
+
+    registry = {
+      nixpkgs = {
+        flake = inputs.nixpkgs;
+      };
+    };
+
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs.outPath}"
+      "nixos-config=/etc/nixos/configuration.nix"
+      "/nix/var/nix/profiles/per-user/root/channels"
+    ];
 
     package = pkgs.nixFlakes;
     extraOptions = ''experimental-features = nix-command flakes'';
