@@ -86,8 +86,10 @@
   #   };
   #   services.vscode-remote-workaround.script = ''
   #     for i in ~/.vscode-server/bin/*; do
-  #       echo "Fixing vscode-server in $i..."
-  #       ln -sf ${pkgs.nodejs_18}/bin/node $i/node
+  #       if [ -e $i/node ]; then
+  #         echo "Fixing vscode-server in $i..."
+  #         ln -sf ${pkgs.nodejs_18}/bin/node $i/node
+  #       fi
   #     done
   #   '';
   # };
