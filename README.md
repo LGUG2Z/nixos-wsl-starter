@@ -90,6 +90,8 @@ cd /tmp/configuration
 sudo nixos-rebuild switch --flake /tmp/configuration
 ```
 
+* Exit out of the nix-shell and out of NixOS by using the `exit` command for each. 
+
 * Restart and reconnect to the current WSL shell
 ```bash
 wsl -t NixOS
