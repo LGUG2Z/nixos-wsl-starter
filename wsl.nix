@@ -12,15 +12,10 @@
 
   networking.hostName = "${hostname}";
 
-  systemd.tmpfiles.rules = [
-    "d /home/${username}/.config 0755 ${username} users"
-    "d /home/${username}/.config/lvim 0755 ${username} users"
-  ];
-
-  # FIXME: change your shell here if you don't want zsh
-  programs.zsh.enable = true;
-  environment.pathsToLink = ["/share/zsh"];
-  environment.shells = [pkgs.zsh];
+  # FIXME: change your shell here if you don't want fish
+  programs.fish.enable = true;
+  environment.pathsToLink = ["/share/fish"];
+  environment.shells = [pkgs.fish];
 
   environment.enableAllTerminfo = true;
 
@@ -31,8 +26,8 @@
 
   users.users.${username} = {
     isNormalUser = true;
-    # FIXME: change your shell here if you don't want zsh
-    shell = pkgs.zsh;
+    # FIXME: change your shell here if you don't want fish
+    shell = pkgs.fish;
     extraGroups = [
       "wheel"
       # FIXME: uncomment the next line if you want to run docker without sudo
@@ -45,10 +40,6 @@
     #   "ssh-rsa ..."
     # ];
   };
-
-  environment.systemPackages = [
-    (import ./win32yank.nix {inherit pkgs;})
-  ];
 
   home-manager.users.${username} = {
     imports = [
