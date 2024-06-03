@@ -72,10 +72,10 @@ install win32yank` or compiling it from source, and then adding it to your `$PAT
 
 ## Quickstart
 
-[![Watch the walkthrough video](https://img.youtube.com/vi/UmRXXYxq8k4/hqdefault.jpg)](https://www.youtube.com/watch?v=UmRXXYxq8k4)
+[![Watch the walkthrough video](https://img.youtube.com/vi/ZuVQds2hncs/hqdefault.jpg)](https://www.youtube.com/watch?v=ZuVQds2hncs)
 
 - Get the [latest
-  release](https://github.com/LGUG2Z/nixos-wsl-starter/releases) and unzip it
+  release](https://github.com/LGUG2Z/nixos-wsl-starter/releases)
 - Install it (tweak the command to your desired paths):
 
 ```powershell
@@ -91,7 +91,6 @@ wsl -d NixOS
 - Get a copy of this repo (you'll probably want to fork it eventually):
 
 ```bash
-nix-shell -p git
 git clone https://github.com/LGUG2Z/nixos-wsl-starter.git /tmp/configuration
 cd /tmp/configuration
 ```
