@@ -34,7 +34,7 @@
       "docker"
       "networkmanager"
     ];
-     hashedPassword = " config.sops.secrets.my-password.path ";
+     hashedPassword = " ~/.config/sops/age/secrets.yaml ";
      openssh.authorizedKeys.keys = [
        " ~/.config/sops/age/secrets.yaml ..."
      ];

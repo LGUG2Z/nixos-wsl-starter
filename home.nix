@@ -22,6 +22,9 @@
     htop
     jq
     keychain
+    keybase
+    keybase-gui
+    kbfs
     killall
     mosh
     procs
