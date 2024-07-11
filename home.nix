@@ -141,8 +141,8 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = ""; # FIXME: set your git email
-      userName = ""; #FIXME: set your git username
+      userEmail = "Monaciello"; # FIXME: set your git email
+      userName = "tahgijones@gmail.com"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
         # url = {
@@ -183,6 +183,7 @@ in {
           + "/extras/kanagawa.fish")}
 
         set -U fish_greeting
+        fish_add_path --append /mnt/c/Users/tjones/scoop/apps/win32yank/0.1.1
       '';
       functions = {
         refresh = "source $HOME/.config/fish/config.fish";
@@ -209,19 +210,19 @@ in {
         }
         # git shortcuts
         // {
-          gapa = "git add --patch";
-          grpa = "git reset --patch";
-          gst = "git status";
-          gdh = "git diff HEAD";
-          gp = "git push";
-          gph = "git push -u origin HEAD";
-          gco = "git checkout";
-          gcob = "git checkout -b";
-          gcm = "git checkout master";
-          gcd = "git checkout develop";
-          gsp = "git stash push -m";
-          gsa = "git stash apply stash^{/";
-          gsl = "git stash list";
+          add_patch = "git add --patch";
+          reset_patch = "git reset --patch";
+          status = "git status";
+          diff = "git diff HEAD";
+          psuh = "git push";
+          push_origin = "git push -u origin HEAD";
+          checkout = "git checkout";
+          checkout_branch = "git checkout -b";
+          checkout_master = "git checkout master";
+          checkout_develop = "git checkout develop";
+          stash_push = "git stash push -m";
+          stash_apply = "git stash apply stash^{/";
+          stash_list = "git stash list";
         };
       shellAliases = {
         jvim = "nvim";
