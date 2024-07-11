@@ -17,6 +17,11 @@
 
   inputs.jeezyvim.url = "github:LGUG2Z/JeezyVim";
 
+  inputs.sops-nix = {
+  url = "github:mic92/sops-nix";
+  inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   outputs = inputs:
     with inputs; let
       secrets = builtins.fromJSON (builtins.readFile "${self}/secrets.json");
@@ -74,6 +79,7 @@
             [
               (configurationDefaults specialArgs)
               home-manager.nixosModules.home-manager
+              sops-nix.nixosModules.sops
             ]
             ++ modules;
         };
