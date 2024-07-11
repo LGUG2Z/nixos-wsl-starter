@@ -8,6 +8,7 @@
 }: let
   unstable-packages = with pkgs.unstable; [
     # FIXME: select your core binaries that you always want on the bleeding-edge
+    age
     bat
     bottom
     coreutils
@@ -20,11 +21,13 @@
     git-crypt
     htop
     jq
+    keychain
     killall
     mosh
     procs
     ripgrep
     sd
+    sops
     tmux
     tree
     unzip

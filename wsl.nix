@@ -23,7 +23,7 @@
 
   # FIXME: uncomment the next line to enable SSH
   # services.openssh.enable = true;
-
+  users.mutableUsers = true ;
   users.users.${username} = {
     isNormalUser = true;
     # FIXME: change your shell here if you don't want fish
@@ -31,7 +31,8 @@
     extraGroups = [
       "wheel"
       # FIXME: uncomment the next line if you want to run docker without sudo
-      # "docker"
+      "docker"
+      "networkmanager"
     ];
     # FIXME: add your own hashed password
     # hashedPassword = "";
