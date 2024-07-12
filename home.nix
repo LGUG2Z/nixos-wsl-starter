@@ -147,8 +147,8 @@ in {
         side-by-side = true;
         navigate = true;
       };
-      userEmail = "Monaciello"; # FIXME: set your git email
-      userName = "tahgijones@gmail.com"; #FIXME: set your git username
+      userEmail = "tahgijones@gmail.com"; # FIXME: set your git email
+      userName = "Monaciello"; #FIXME: set your git username
       extraConfig = {
         # FIXME: uncomment the next lines if you want to be able to clone private https repos
         # url = {

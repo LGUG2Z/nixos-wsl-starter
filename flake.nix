@@ -17,10 +17,10 @@
 
   inputs.jeezyvim.url = "github:LGUG2Z/JeezyVim";
 
-  inputs.sops-nix = {
-  url = "github:mic92/sops-nix";
-  inputs.nixpkgs.follows = "nixpkgs";
-  };
+#  inputs.sops-nix = {
+#  url = "github:mic92/sops-nix";
+#  inputs.nixpkgs.follows = "nixpkgs";
+#  };
 
   outputs = inputs:
     with inputs; let
@@ -78,8 +78,8 @@
           modules =
             [
               (configurationDefaults specialArgs)
-              home-manager.nixosModules.home-manager
-              sops-nix.nixosModules.sops
+#              home-manager.nixosModules.home-manager
+#              sops-nix.nixosModules.sops
             ]
             ++ modules;
         };
@@ -92,6 +92,10 @@
         modules = [
           nixos-wsl.nixosModules.wsl
           ./wsl.nix
+          ./home.nix
+#          ./sops.nix
+#          sops-nix.nixosModules.sops
+#          home-manager.nixosModules.home-manager
         ];
       };
     };

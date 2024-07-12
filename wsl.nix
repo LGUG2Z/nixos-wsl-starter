@@ -1,5 +1,4 @@
 {
-  # FIXME: uncomment the next line if you want to reference your GitHub/GitLab access tokens and other secrets
   # secrets,
   lib,
   config,
@@ -9,7 +8,6 @@
   inputs,
   ...
 }: {
-  # FIXME: change to your tz! look it up with "timedatectl list-timezones"
   time.timeZone = "America/New_York";
 
   networking.hostName = "${hostname}";
@@ -34,7 +32,7 @@
       "docker"
       "networkmanager"
     ];
-     hashedPassword = " ~/.config/sops/age/secrets.yaml ";
+     hashedPassword = "Monaciello-password";
      openssh.authorizedKeys.keys = [
        " ~/.config/sops/age/secrets.yaml ..."
      ];
