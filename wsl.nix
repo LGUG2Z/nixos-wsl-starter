@@ -1,7 +1,7 @@
 {
   # secrets,
-  lib,
-  config,
+  # lib,
+  # config,
   username,
   hostname,
   pkgs,
