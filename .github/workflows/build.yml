@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@6a9a9e84a173d90b3ffb42c5ddaf9ea033fad011
+      - uses: cachix/install-nix-action@v27
         with:
           extra_nix_config: "access-tokens = github.com=${{ github.token }}"
 
