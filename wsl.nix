@@ -1,7 +1,5 @@
 {
   # secrets,
-  # lib,
-  # config,
   username,
   hostname,
   pkgs,
@@ -23,7 +21,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   services.openssh.enable = true;
-  users.mutableUsers = true ;
+  users.mutableUsers = true;
   users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -32,10 +30,10 @@
       "docker"
       "networkmanager"
     ];
-     hashedPassword = "Monaciello-password";
-     openssh.authorizedKeys.keys = [
-       " ~/.config/sops/age/secrets.yaml ..."
-     ];
+    hashedPassword = "Monaciello-password";
+    openssh.authorizedKeys.keys = [
+      " ~/.config/sops/age/secrets.yaml ..."
+    ];
   };
 
   home-manager.users.${username} = {
@@ -64,45 +62,45 @@
     autoPrune.enable = true;
   };
 
-   systemd.user = {
-     paths.vscode-remote-workaround = {
-       wantedBy = ["default.target"];
-       pathConfig.PathChanged = "%h/.vscode-server/bin";
-     };
-     services.vscode-remote-workaround.script = ''
-       for i in ~/.vscode-server/bin/*; do
-         if [ -e $i/node ]; then
-           echo "Fixing vscode-server in $i..."
-           ln -sf ${pkgs.nodejs_18}/bin/node $i/node
-         fi
-       done
-     '';
-   };
+  systemd.user = {
+    paths.vscode-remote-workaround = {
+      wantedBy = ["default.target"];
+      pathConfig.PathChanged = "%h/.vscode-server/bin";
+    };
+    services.vscode-remote-workaround.script = ''
+      for i in ~/.vscode-server/bin/*; do
+        if [ -e $i/node ]; then
+          echo "Fixing vscode-server in $i..."
+          ln -sf ${pkgs.nodejs_18}/bin/node $i/node
+        fi
+      done
+    '';
+  };
 
-# contribution given to takota/keybase.nix https://gist.github.com/taktoa/3133a4d9b1614fad1f4841f145441406
+  # contribution given to takota/keybase.nix https://gist.github.com/taktoa/3133a4d9b1614fad1f4841f145441406
 
-services.kbfs = {
+  services.kbfs = {
     enable = true;
     mountPoint = "%t/kbfs";
-    extraFlags = [ "-label %u" ];
+    extraFlags = ["-label %u"];
   };
 
   systemd.user.services = {
     keybase.serviceConfig.Slice = "keybase.slice";
 
     kbfs = {
-      environment = { KEYBASE_RUN_MODE = "prod"; };
+      environment = {KEYBASE_RUN_MODE = "prod";};
       serviceConfig.Slice = "keybase.slice";
     };
 
     keybase-gui = {
       description = "Keybase GUI";
-      requires = [ "keybase.service" "kbfs.service" ];
-      after    = [ "keybase.service" "kbfs.service" ];
+      requires = ["keybase.service" "kbfs.service"];
+      after = ["keybase.service" "kbfs.service"];
       serviceConfig = {
-        ExecStart  = "${pkgs.keybase-gui}/share/keybase/Keybase";
+        ExecStart = "${pkgs.keybase-gui}/share/keybase/Keybase";
         PrivateTmp = true;
-        Slice      = "keybase.slice";
+        Slice = "keybase.slice";
       };
     };
   };
