@@ -218,7 +218,7 @@ in {
           reset_patch = "git reset --patch";
           status = "git status";
           diff = "git diff HEAD";
-          psuh = "git push";
+          push = "git push";
           push_origin = "git push -u origin HEAD";
           checkout = "git checkout";
           checkout_branch = "git checkout -b";
@@ -234,6 +234,7 @@ in {
         pbcopy = "/mnt/c/Windows/System32/clip.exe";
         pbpaste = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -command 'Get-Clipboard'";
         explorer = "/mnt/c/Windows/explorer.exe";
+        code = "/mnt/c/Windows/Users/tjones/scoop/apps/vscode/current/code.exe";
       };
       plugins = [
         {
