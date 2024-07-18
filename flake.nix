@@ -17,10 +17,10 @@
 
   inputs.jeezyvim.url = "github:LGUG2Z/JeezyVim";
 
-#  inputs.sops-nix = {
-#  url = "github:mic92/sops-nix";
-#  inputs.nixpkgs.follows = "nixpkgs";
-#  };
+  inputs.sops-nix = {
+  url = "github:mic92/sops-nix";
+  inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   outputs = inputs:
     with inputs; let
