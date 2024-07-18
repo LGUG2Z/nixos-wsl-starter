@@ -1,0 +1,11 @@
+keys:
+  - &users
+    - &ta age1rfeyfvc8ht68rhsyljwhv60hkmlvaprxrtvqkctc7sas72p3ws8q2lp95a
+  - &hosts:
+    - &Monaciello age1d9y0uxgm433gh8dykk2la8eq0722nz40sgwh0twjpyvc0xjjxgws9jxeef
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *ta
+      - *Monaciello
