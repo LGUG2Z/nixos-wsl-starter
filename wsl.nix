@@ -1,5 +1,5 @@
 {
-  # secrets,
+  secrets,
   username,
   hostname,
   pkgs,
@@ -16,7 +16,7 @@
 
   environment.enableAllTerminfo = true;
 
-  sops.secrets.my-password.neededForUsers = true;
+# sops.secrets.my-password.neededForUsers = true;
 
   security.sudo.wheelNeedsPassword = false;
 
