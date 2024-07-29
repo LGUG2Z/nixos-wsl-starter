@@ -88,7 +88,7 @@
 
       nixosConfigurations.nixos = mkNixosConfiguration {
         hostname = "nixos";
-        username = "Monaciello"; # FIXME: replace with your own username!
+        username = "Monaciello";
         modules = [
           nixos-wsl.nixosModules.wsl
           ./wsl.nix
