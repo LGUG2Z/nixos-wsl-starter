@@ -42,6 +42,19 @@
     ];
   };
 
+sops = {
+  defaultSopsFile = ./secrets/secrets.json;
+  defaultSopsFormat = "json";
+  secrets = {
+    github_token = {
+    fomart = "json";
+    sopsFile = ./secrets/secrets.json;
+    };
+  };
+};
+
+
+
   system.stateVersion = "22.05";
 
   wsl = {
