@@ -47,7 +47,7 @@ sops = {
   defaultSopsFormat = "json";
   secrets = {
     github_token = {
-    fomart = "json";
+    format = "json";
     sopsFile = ./secrets/secrets.json;
     };
   };

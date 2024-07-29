@@ -1,4 +1,4 @@
 *key
 .idea
 result
-.sops*
+*.sops.*
