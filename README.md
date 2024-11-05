@@ -97,7 +97,9 @@ cd /tmp/configuration
 
 - Change the username to your desired username in `flake.nix` with `nvim` (or
   whichever editor you prefer)
-- Install `win32yank` with `scoop` and add it to your `$PATH` in NixOS
+- Install `win32yank` with `scoop` and add it to your `$PATH` in NixOS.
+  - Enter `home.nix`, search for `fish`, and add the following line to the `interactiveShellInit`. Make sure to replace the username with your windows username!
+  - `fish_add_path --append /mnt/c/Users/<Your Windows Username>/scoop/apps/win32yank/0.1.1`
 - Apply the configuration and shutdown the WSL2 VM
 
 ```bash
