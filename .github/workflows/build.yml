@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v27
+      - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: "access-tokens = github.com=${{ github.token }}"
 
@@ -31,12 +31,12 @@ jobs:
           sudo $nix_bin run .#nixosConfigurations.nixos.config.system.build.tarballBuilder
 
       - name: Upload tarball
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nixos-wsl.tar.gz
           path: nixos-wsl.tar.gz
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: nixos-wsl.tar.gz
